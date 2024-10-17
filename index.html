@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora SUGARPOD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora SUGARPOD</h1>
+        <p>Introduce la concentración de H2S (ppm) y selecciona el modelo de SUGARPOD:</p>
+        <input type="number" id="h2s-concentration" placeholder="Concentración de H2S (ppm)">
+        <select id="sugarpod-model">
+            <option value="2.4">SUGARPOD-315 (2.4 Kg de carbón)</option>
+            <option value="3.1">SUGARPOD-315 PRO (3.1 Kg de carbón)</option>
+            <option value="3.5">SUGARPOD-400 (3.5 Kg de carbón)</option>
+            <option value="4.4">SUGARPOD-400 PRO (4.4 Kg de carbón)</option>
+            <!-- Añadir el resto de modelos -->
+        </select>
+        <button onclick="calculateLife()">Calcular vida útil</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateLife() {
+            const h2sConcentration = document.getElementById('h2s-concentration').value;
+            const carbonAmount = document.getElementById('sugarpod-model').value;
+
+            if (h2sConcentration && carbonAmount) {
+                const lifeInYears = (carbonAmount / h2sConcentration) * 365;
+                document.getElementById('result').textContent = `La vida útil estimada del cartucho es de aproximadamente ${lifeInYears.toFixed(2)} días.`;
+            } else {
+                document.getElementById('result').textContent = 'Por favor, introduce la concentración de H2S y selecciona un modelo.';
+            }
+        }
+    </script>
+</body>
+</html>
